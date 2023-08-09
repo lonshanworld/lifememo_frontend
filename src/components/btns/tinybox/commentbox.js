@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Logo from "../../../assets/logo.png";
 import NametoprofileBtn from "../nametoprofilebtn";
 import convertTime from "../../../utils/convertTimeformat";
@@ -9,7 +9,7 @@ function CommentBox(props){
     return (
         <div className="border-b border-gray-400">
             <div className="w-full flex justify-start items-start px-5 py-1">
-                <img src={props.data.image === null ? Logo : props.data.image} className="w-10 h-10 rounded-full"/>
+                <img src={props.data.image === null ? Logo : props.data.image} className="w-10 h-10 rounded-full" alt="profile"/>
                 <div className="pl-2">
                     <div className="flex flex-col justify-center items-start">
                         <NametoprofileBtn name={props.data.name} accountId={props.data.id} userId={props.userId} />

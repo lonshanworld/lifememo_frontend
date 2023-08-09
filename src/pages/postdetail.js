@@ -1,5 +1,5 @@
-import React, { useEffect, useReducer, useState,useContext, useCallback ,useRef} from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import React, { useEffect, useState,useContext ,useRef} from "react";
+import { useParams } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import { useTheme } from "../customhooks/usethemehook";
 import Postdetailbtns from "../components/btns/postdetailbtns";
@@ -72,6 +72,7 @@ function Postdetail(){
 
     async function getFetchData(){
         toggleShowloading(true);
+        console.log(postId);
         const response = await getApiRequest(
             `${process.env.REACT_APP_BASE_API}post/postdetail?postId=${postId}`,
             cookies.jwtforlifememory,
@@ -82,6 +83,7 @@ function Postdetail(){
             setpostdetail(data.postDetail);
             toggleShowloading(false);
         }else{
+            console.log(response.status);
             toggleShowloading(false);
             toggleShowError(true, response.statusText);
         }

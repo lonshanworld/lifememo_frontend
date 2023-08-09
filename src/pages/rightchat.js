@@ -1,4 +1,4 @@
-import React,{useState,useEffect, useCallback} from "react";
+import React,{useState,useEffect} from "react";
 import ChatHead from "../components/rightchats/chathead";
 
 function Rightchat(props){
@@ -20,7 +20,7 @@ function Rightchat(props){
     useEffect(()=>{
         let idlist = props.userData.friends;
         let newList = [];
-        idlist.map(item => {
+        idlist.forEach(item => {
             if(item !== props.userData._id) newList.push(item);
         } );
         setFriendarrayId(newList);

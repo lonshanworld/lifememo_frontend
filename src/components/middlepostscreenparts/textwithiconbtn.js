@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTheme } from "../../customhooks/usethemehook";
 
 function TextwithIconBtn(props){

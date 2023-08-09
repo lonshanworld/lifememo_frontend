@@ -1,9 +1,8 @@
 import React from "react";
-import { useTheme } from "../../customhooks/usethemehook";
+// import { useTheme } from "../../customhooks/usethemehook";
 import TextwithIcon from "../textwithicon";
 
 function Postdetailbtns(props){
-    const dark = useTheme();
 
     return (
         <button 

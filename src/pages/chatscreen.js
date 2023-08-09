@@ -405,7 +405,7 @@ function ChatScreen(props){
             </div>
             <div className="flex justify-center items-center pt-12 w-full bgClr">
                 <div className="flex justify-center items-center w-4/6 border-b border-cuswoodlight h-12">
-                    <img src={imgurl === "" ? Logo : imgurl} className="rounded-full h-10 w-10"/>
+                    <img src={imgurl === "" ? Logo : imgurl} className="rounded-full h-10 w-10" alt="profile"/>
                     <span className="pl-2 text-sm truncate">{frienddata["userName"]}</span>
                 </div>
             </div>

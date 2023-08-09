@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import CustomInput from "../components/textfield";
 import { UpdateShowErrorContext } from "../customhooks/errorhander";
@@ -21,7 +21,6 @@ function UpdateProfileScreen(){
     // const [oldbirtdate, setOldbirthdate] = useState("")
 
     const [showimage, setShowimage] = useState(false);
-    const [showdata, setShowdata] = useState(false);
     const [userInfo, setUserInfo] = useState();
     const {toggleShowloading} = useContext(ShowLoadingContext);
     const {toggleShowError} = useContext(UpdateShowErrorContext);

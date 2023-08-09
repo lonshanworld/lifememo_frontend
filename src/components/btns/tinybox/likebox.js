@@ -6,7 +6,7 @@ function LikeBox(props){
     return (
         <div className="w-full flex justify-start items-center px-5 py-1">
             <img src={props.image === null ? Logo : props.image} 
-            className="w-10 h-10 rounded-full mr-2"/>
+            className="w-10 h-10 rounded-full mr-2" alt="profile"/>
             <NametoprofileBtn name={props.name} accountId={props.accountId} userId={props.userId} />
         </div>
     );

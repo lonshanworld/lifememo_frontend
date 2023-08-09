@@ -45,13 +45,13 @@ function PostListdesign(props){
             const postdata = data.message.postdetail;
 
             let likearray = postdata["likes"];
-            likearray.map((singlelike) =>{
+            likearray.forEach((singlelike) =>{
                 if(singlelike === props.originaluserInfo._id){
                     setLikeState(true);
                 }
             });
             let sharearray = postdata["contributes"];
-            sharearray.map((singleshare)=>{
+            sharearray.forEach((singleshare)=>{
                 if(singleshare === props.originaluserInfo._id){
                     setShareState(true);
                 }

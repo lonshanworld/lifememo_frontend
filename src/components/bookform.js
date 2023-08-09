@@ -8,8 +8,8 @@ function Bookform({children}){
         <div>
         <Logoanimate/>
             <div className="loginbook">
-                <img className="" src={bookImage}/>
-                <img className="absolute top-4 right-12 w-12 h-12" src={leaves} />
+                <img className="" src={bookImage} alt="book"/>
+                <img className="absolute top-4 right-12 w-12 h-12" src={leaves} alt="leaves" />
                 {children}    
             </div>
         </div>

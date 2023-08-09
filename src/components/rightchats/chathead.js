@@ -42,7 +42,7 @@ function ChatHead(props){
             className={`flex justify-start w-full border-b border-gray-500 items-center hover:text-blue-500 active:bg-gray-300 active:text-blue-500 ${(props.Id === props.activeId) && "text-blue-500"}`}>
                 <img
                 className="h-12 w-12 p-1.5 rounded-full" 
-                src={imageurl === undefined ? Logo : imageurl} />
+                src={imageurl === undefined ? Logo : imageurl} alt="profile"/>
                 <span className="truncate">{userData.userName}</span>
             </button>
         </div>
