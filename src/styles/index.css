@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+:root {
+    --varbackground: #F6F6F6;
+    --vartext: black;
+    --vartextopposite: white;
+    --varwoodClr: #49281F;
+    --varlightwoodClr: #C0BA7C;
+    --vargreenClr: #758918;
+    --varlightgreenClr: #9FBD30;
+    --varblueClr: #14A5ED;
+    --varlightblueClr: #28D1FA;
+    --varshadowClr: grey;
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--varbackground);
+    color: var(--vartext);
+    font-family: 'Kanit', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.backgroundClr {
+    background-color: var(--vartextopposite);
+}
+
+.bgClr {
+    background-color: var(--varbackground);
+}
+
+.fontbold {
+    font-weight: 900;
+}
+
+.fontlight {
+    font-weight: 200;
+}
+
+.textClr {
+    color: var(--vartext);
+}
+
+.textoppositeClr {
+    color: var(--vartextopposite);
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+}
+
+.maintitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.maintitle>span {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 2rem;
+    color: white;
+    background-color: var(--varwoodClr);
+}
+
+.infoapp {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 1rem;
+    color: var(--vartext);
+    text-transform: uppercase;
+}
+
+
+
+.inputclass {
+    width: 190px;
+    margin-left: 2.6rem;
+    color: var(--vartext);
+    display: block;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--varwoodClr);
+}
+
+.inputclassupdateProfile{
+    width: 100%;
+    margin-left: 2.6rem;
+    /* margin-left: 2.6rem; */
+    color: var(--vartext);
+    display: block;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--varwoodClr);
+}
+
+.labelclass {
+    margin-left: 2.6rem;
+    display: block;
+    color: var(--vartext);
+    position: relative;
+    bottom: 25px;
+    font-size: 0.8rem;
+
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+.labelclassani {
+    bottom: 40px;
+    color: grey;
+    font-size: 0.7rem;
+}
+
+.btnshadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.leftsidepageshadow {
+    box-shadow: 0px 0px 2px 0.5px var(--varshadowClr);
+}
+
+.rightsidepageshadow {
+    box-shadow: 0px 0px 2px 0.5px var(--varshadowClr);
+}
+
+.appbarshadow {
+    box-shadow: 0 -1px 3px 0.2px var(--varshadowClr);
+}
+
+.txtinputshadow {
+    box-shadow: 0 1px 3px 0.2px var(--varshadowClr);
+}
+
+/* .button {
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 100px;
+    background-color: var(--varblueClr);
+    background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 87% at 26% 20%, rgba(255, 255, 255, 0.41) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: 2px 19px 31px rgba(0, 0, 0, 0.2);
+
+    border: 0;
+
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
+    cursor: pointer;
+} */
+
+
+/* CSS */
+.button {
+    color: white;
+    width: 35px;
+    height: 35px;
+    padding: 6px 6px;
+    background-color: var(--varlightblueClr);
+    background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+
+    cursor: pointer;
+}
+
+.button:active,
+.button:hover {
+    opacity: 0.8;
+}
+
+.button:active {
+    color: black;
+}
+
+
+.cusbtnblue{
+    background-color: var(--varblueClr);
+    border: 1px solid var(--vartext);
+    border-radius: 4px;
+    box-shadow: white 4px 4px 0 0, #000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    overflow: visible;
+    padding: 6px 20px;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.cusbtnblue:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+}
+
+.cusbtnblue:not([disabled]):active {
+    box-shadow: var(--vartextopposite) 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+}
+
+
+.cusbtnred{
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 4px;
+    box-shadow: white 4px 4px 0 0, #000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: rgb(247, 49, 49);
+    cursor: pointer;
+    display: inline-block;
+    overflow: visible;
+    padding: 6px 20px;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.cusbtnred:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+}
+
+.cusbtnred:not([disabled]):active {
+    box-shadow: var(--vartextopposite) 2px 2px 0 0, red 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+}

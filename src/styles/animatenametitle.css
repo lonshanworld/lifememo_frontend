@@ -1,0 +1,21 @@
+.customanimatename{
+    animation-name: txtlength;
+    animation-duration: 2500ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes txtlength {
+    0%{ 
+        transform: scaleX(0);
+        max-width: 0%;
+    }
+
+    50%{
+        transform: scaleX(1);
+    }
+
+    100%{
+        max-width: 100%;
+    }
+}

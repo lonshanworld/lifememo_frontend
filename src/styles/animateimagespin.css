@@ -1,0 +1,15 @@
+.customImagespin{
+    animation-name: customspin;
+    animation-duration: 3000ms;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes customspin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
