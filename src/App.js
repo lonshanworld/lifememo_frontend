@@ -33,7 +33,7 @@ function App() {
     <div className="App w-full h-full flex justify-center items-center flex-col">
       <img src={Logo} className="w-2/6 md:w-1/6" alt="logo"/>
       <p
-      className="absolute bottom-5">Copyright &copy; <span id="year"></span>.  All right reserved to Lon Shan.</p>
+      className="absolute bottom-5">Copyright &copy; <span id="year"></span>.  All rights reserved to Lon Shan.</p>
     </div>
   );
 }

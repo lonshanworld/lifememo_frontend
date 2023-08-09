@@ -45,7 +45,7 @@ function ChatScreen(props){
 
     const [isVideo, setIsVideo] = useState(false);
     
-    const socket = io(`http://localhost:5000`,{
+    const socket = io(`https://lifememo-api.onrender.com`,{
         path : "/chatsocket"
     });
 
