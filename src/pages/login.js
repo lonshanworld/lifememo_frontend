@@ -76,7 +76,10 @@ function Login(){
             }
             <div className="flex justify-evenly items-center flex-col">
                 <Maintitle/>
-                <button onClick={gotoSignuppage} className="textoppositeClr mt-4 py-1 px-4 bg-cusgreen active:text-gray-500 rounded-md" >Go to Signup page</button>
+                <div>
+                    <span className="text-lg mr-3">No account ?? </span>
+                    <button onClick={gotoSignuppage} className="textoppositeClr mt-4 py-1 px-4 bg-cusgreen active:text-gray-500 rounded-md" >Go to Signup page</button>
+                </div>
             </div>
             <Bookform>
                 <form onSubmit={onSubmitFunc} className="absolute top-0 w-full h-full flex justify-evenly items-center flex-col pt-20" action="" method="">

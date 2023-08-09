@@ -68,19 +68,20 @@ function VideoCall(props){
                     
                     className="z-0 w-full h-full rounded-2xl absolute object-cover scale-x-[-1]">
                 </video>     
-                <div className="w-full h-10 bg-gray-500 bg-opacity-60 absolute bottom-0 z-10 rounded-b-2xl flex justify-center items-center px-3">
-                    <button
-                    onClick={props.getvideoFunc} 
-                    className="flex justify-center items-center active:text-blue-500">
+                <button 
+                onClick={props.getvideoFunc}
+                className="w-full active:text-blue-500 h-10 bg-gray-500 bg-opacity-60 absolute bottom-0 z-30 rounded-b-2xl flex justify-center items-center px-3">
+                    <div 
+                    className="flex justify-center items-center">
                         <span>End call</span>
                         <i className="fa-solid fa-phone-slash fa-lg"></i>
-                    </button>
+                    </div>
                     
                     {/* <button className="flex justify-center items-center">
                         <span>Mute call</span>
                         <i class="fa-solid fa-microphone-slash fa-lg"></i>
                     </button> */}
-                </div>
+                </button>
             </div>
         </Draggable>
     );

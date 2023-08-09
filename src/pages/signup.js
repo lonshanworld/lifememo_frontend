@@ -84,9 +84,19 @@ function Signup(){
             {
                 showloading && <Loadingbox/>
             }
+            {/* <div className="flex justify-evenly items-center flex-col">
+                <Maintitle/>
+                <div className="flex justify-center items-center">
+                    <span className="text-lg mr-3">No account ?? </span>
+                    <button onClick={gotoLoginpage} className="textoppositeClr mt-4 py-1 px-4 bg-cusgreen active:text-gray-500 rounded-md" >Go to Login page</button>
+                </div>
+            </div> */}
             <div className="flex justify-evenly items-center flex-col">
-            <Maintitle/>
-                <button onClick={gotoLoginpage} className="textoppositeClr mt-4 py-1 px-4 block bg-cusgreen active:text-gray-500 rounded-md" >Go to Login page</button>
+                <Maintitle/>
+                <div>
+                    <span className="text-lg mr-3">Have account ?? </span>
+                    <button onClick={gotoLoginpage} className="textoppositeClr mt-4 py-1 px-4 bg-cusgreen active:text-gray-500 rounded-md" >Go to Login page</button>
+                </div>
             </div>
             <Bookform>
                 <form onSubmit={signupFunc} className="absolute top-0 w-full h-full flex justify-evenly items-center flex-col pt-10 pb-3" >
