@@ -7,37 +7,46 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import Errorbox from "../components/errorbox";
 import Loadingbox from "../components/loadingbox";
+import DatePicker, { setDefaultLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 function Signup(){
     const userNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
-    const birthDateRef = useRef();
+    const [selectdate,setSelectDate] = useState(null);
+    // const birthDateRef = useRef();
     const navigate = useNavigate();
     const [showerror, setShowerror] = useState(false);
     const [errortext, setErrorText] = useState("");
     const [showloading, setShowloading] = useState(false);
     const [cookies,setCookie] = useCookies(["jwtforlifememory"]);
 
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-    let yr = today.getFullYear();
+    // let today = new Date();
+    // let dd = today.getDate();
+    // let mm = today.getMonth() + 1;
+    // let yr = today.getFullYear();
 
-    let todaytext = yr+"-"+mm+"-"+dd;
+    // let todaytext = yr+"-"+mm+"-"+dd;
 
     async function signupFunc(e){
         e.preventDefault();
-        if(userNameRef.current.value.trim() && emailRef.current.value.trim() && passwordRef.current.value.trim() && confirmPasswordRef.current.value.trim() && birthDateRef.current.value){
-            
+       
+        if(userNameRef.current.value.trim() && emailRef.current.value.trim() && passwordRef.current.value.trim() && confirmPasswordRef.current.value.trim() && selectdate){
+            const year = selectdate.toLocaleString("default", { year: "numeric" });
+            const month = selectdate.toLocaleString("default", { month: "2-digit" });
+            const day = selectdate.toLocaleString("default", { day: "2-digit" });
+            const formattedDate = year + "-" + month + "-" + day;
+            // console.log(formattedDate);
             if(passwordRef.current.value === confirmPasswordRef.current.value){
                 setShowloading(true);
                 const formdata = new FormData();
                 formdata.append("userName", userNameRef.current.value);
                 formdata.append("email", emailRef.current.value);
                 formdata.append("password", passwordRef.current.value);
-                formdata.append("birthDate",birthDateRef.current.value);
+                formdata.append("birthDate",formattedDate);
 
                 const response = await fetch(
                     `${process.env.REACT_APP_BASE_API}signup`,
@@ -62,7 +71,7 @@ function Signup(){
                 setShowerror(true);
             }
         }else{
-            setErrorText("Text input should not be enpty");
+            setErrorText("All fields should be filled");
             setShowerror(true);
         }
     }
@@ -129,9 +138,20 @@ function Signup(){
                         isSignup={true}
                     />
                     <div className="ml-12">
-                        <label className="text-cuswood mr-3">Birthdate</label>
-                        <input ref={birthDateRef} type="date" className="bg-transparent text-cuswood" max={todaytext} required/>
+                        {/* <label className="text-cuswood mr-3">Birthdate</label> */}
+                        {/* <input ref={birthDateRef} type="date" className="bg-transparent text-cuswood" max={todaytext} required/> */}
+                        {/* <span className="text-cuswood mr-3">Change Birth-date</span>  */}
+                        <DatePicker 
+                            // ref={birthDateRef}
+                            required
+                            className="bg-cuswood text-white pl-1 rounded-md w-5/6 placeholder-white" 
+                            placeholderText="Tap to pick Birth-date"
+                            selected={selectdate}
+                            onChange={(date) => setSelectDate(date)}
+                        />
+                        {/* <span>{selectdate}</span> */}
                     </div>
+                  
                     <button 
                     type="submit" 
                     onClick={signupFunc}

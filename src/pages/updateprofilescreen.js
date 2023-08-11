@@ -6,6 +6,9 @@ import { UpdateShowErrorContext } from "../customhooks/errorhander";
 import { UpdateShowAlertContext } from "../customhooks/showalertbox";
 import { ShowLoadingContext } from "../customhooks/showloadingscreen";
 import { getApiRequest, postApiRequest } from "../utils/apiRequests";
+import DatePicker, { setDefaultLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import convertTime from "../utils/convertTimeformat";
 
 function UpdateProfileScreen(){
     const {userId} = useParams();
@@ -16,24 +19,25 @@ function UpdateProfileScreen(){
     const newpasswordRef = useRef();
     const confirmPasswordRef = useRef();
     const oldpasswordRef = useRef();
-    const birthDateRef = useRef();
+    // const birthDateRef = useRef();
     const imageRef = useRef();
+    const [selectdate,setSelectDate] = useState(null);
     // const [oldbirtdate, setOldbirthdate] = useState("")
 
     const [showimage, setShowimage] = useState(false);
-    const [userInfo, setUserInfo] = useState();
+    const [userInfo, setUserInfo] = useState(null);
     const {toggleShowloading} = useContext(ShowLoadingContext);
     const {toggleShowError} = useContext(UpdateShowErrorContext);
     const {toggleAlertBox} = useContext(UpdateShowAlertContext);
 
     const navigate = useNavigate();
 
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-    let yr = today.getFullYear();
+    // let today = new Date();
+    // let dd = today.getDate();
+    // let mm = today.getMonth() + 1;
+    // let yr = today.getFullYear();
 
-    let todaytext = yr+"-"+mm+"-"+dd;
+    // let todaytext = yr+"-"+mm+"-"+dd;
 
     async function getPersonalData(){
         toggleShowloading(true);
@@ -45,7 +49,9 @@ function UpdateProfileScreen(){
             
             usernameRef.current.value = data["message"]["userdata"].userName;
             emailRef.current.value = data["message"]["userdata"].email;
-            birthDateRef.current.value = data["message"]["userdata"].birthDate.split("T")[0];
+            // setSelectDate(data["message"]["userdata"].birthDate.split("T")[0]);
+            
+            // birthDateRef.current.value = data["message"]["userdata"].birthDate.split("T")[0];
             // console.log(data["message"]["userdata"].birthDate.split("T")[0]);
             // setOldbirthdate(data["message"]["userdata"].birthDate.split("T")[0]);
         }else{
@@ -56,6 +62,7 @@ function UpdateProfileScreen(){
 
     function updateprofileFunc(e){
         e.preventDefault();
+        console.log(selectdate);
         if(oldpasswordRef.current.value === ""){
             toggleAlertBox(true, "You must fill old-password field to update profile");
         }else{
@@ -63,13 +70,22 @@ function UpdateProfileScreen(){
             formdata.append("userName", usernameRef.current.value);
             formdata.append("email", emailRef.current.value);
             formdata.append("oldpassword", oldpasswordRef.current.value);
-            formdata.append("birthDate", birthDateRef.current.value);
+            if(selectdate === null){
+                formdata.append("birthDate", userInfo.birthDate.split("T")[0]);
+            }else{
+                const year = selectdate.toLocaleString("default", { year: "numeric" });
+                const month = selectdate.toLocaleString("default", { month: "2-digit" });
+                const day = selectdate.toLocaleString("default", { day: "2-digit" });
+                const formattedDate = year + "-" + month + "-" + day;
+                formdata.append("birthDate", formattedDate);
+            }
             
             var file = imageRef.current.files;
             if(file.length > 0){
                 formdata.append("files",imageRef.current.files[0]);
             }
-            if(newpasswordRef.current.value !== null){
+            // console.log(newpasswordRef.current.value);
+            if(newpasswordRef.current.value !== ""){
                 if(newpasswordRef.current.value !== confirmPasswordRef.current.value){
                     toggleAlertBox(true, "New password must be same with comfirm-new-password");
                 }else{
@@ -173,9 +189,15 @@ function UpdateProfileScreen(){
                             <input ref={birthDateRef} type="date" className="bg-transparent text-cuswood outline-none" max={todaytext} required/>
                         </div>
                     </div> */}
-                    <div className="">
-                        <label className="text-gray-400 mr-3">New Birthdate</label>
-                        <input ref={birthDateRef} type="date" className="bg-transparent text-cuswood outline-none" max={todaytext} required/>
+                    <div className="flex-col flex justify-center items-center">
+                        <label className="text-gray-400 mr-3">Old birthDate : {userInfo === null ? "" : userInfo.birthDate.split("T")[0]}</label>
+                        <DatePicker 
+                            required
+                            className="bg-cuswood text-white pl-1 rounded-md w-full placeholder-white" 
+                            placeholderText="Tap to change Birth-date"
+                            selected={selectdate}
+                            onChange={(date) => setSelectDate(date)}
+                        />
                     </div>
                     <div>
                         <label 

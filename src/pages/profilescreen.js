@@ -54,8 +54,9 @@ function ProfileScreen(){
     const [btntxt, setBtntxt] = useState();
     const [userInfo, setUserInfo] = useState();
     const [originaluserInfo, setOriginaluserInfo] = useState();
-    const [stillnotfriend, setStillnotfriend] = useState(false);
+    // const [stillnotfriend, setStillnotfriend] = useState(false);
     const [isblocked, setIsblocked] = useState(false);
+    const [isfriend, setIsfriend] = useState(false);
     const memoRef = useRef();
     
     async function fetchUsersData(){
@@ -70,6 +71,11 @@ function ProfileScreen(){
             
             setUserInfo(rawdata["message"]["userData"]);
             setOriginaluserInfo(originalrawdata["message"]["userData"]);
+
+            if(originalrawdata["message"]["userData"]["friends"].includes(accountId)){
+                setIsfriend(true);
+                setIsblocked(false);
+            }
 
         }else{
             toggleShowloading(false);
@@ -95,7 +101,8 @@ function ProfileScreen(){
             );
             toggleShowloading(false);    
         if(response.status === 200){
-            setStillnotfriend(true);
+            // setStillnotfriend(true);
+            setIsfriend(true);
         }else{
             toggleShowError(true, response.statusText)
         }
@@ -111,6 +118,7 @@ function ProfileScreen(){
             toggleShowloading(false);    
         if(response.status === 200){
             setIsblocked(true);
+            setIsfriend(false);
         }else{
             toggleShowError(true, response.statusText)
         }
@@ -185,7 +193,7 @@ function ProfileScreen(){
                         </div>
                         {
                             (accountId !== userId) && <div className="mt-8 mx-14 flex justify-evenly items-center">
-                                {
+                                {/* {
                                     originaluserInfo["friends"].includes(accountId) 
                                         ?
                                         <div className="text-cusgreen text-base">
@@ -218,6 +226,26 @@ function ProfileScreen(){
                                         <i className="fa-solid fa-user-slash fa-lg"></i>
                                         <span>Block</span>
                                     </button>
+                                } */}
+                                {
+                                    isfriend && <div className="text-cusgreen text-base">
+                                        <i className="fa-solid fa-check fa-xl pr-1"></i>
+                                        <span>Friend</span>
+                                    </div>
+                                }
+                                {
+                                    isfriend && !isblocked && <button 
+                                        onClick={removeFriendFunc}
+                                        className="cusbtnred">
+                                        <i className="fa-solid fa-user-slash fa-lg"></i>
+                                        <span>Block ??</span>
+                                    </button>
+                                }
+                                {
+                                    (!isfriend || isblocked ) && <button onClick={addFriendFunc} className="cusbtnblue">
+                                        <i className="fa-solid fa-user-plus fa-bounce fa-lg"></i>
+                                        <span>Add Friend</span>
+                                    </button> 
                                 }
                             </div>
                         }
