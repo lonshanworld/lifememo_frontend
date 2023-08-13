@@ -33,14 +33,14 @@ function SearchScreen(){
         if(userlist !== null ){
             
             return <div 
-            className="backgroundClr h-[calc(100vh-140px)] w-4/5 sm:w-3/5 md:w-1/2 lg:w-2/5 rounded-lg py-3 shadow-sm shadow-green-500 mx-auto">
+            className="backgroundClr h-[calc(100vh-140px)] w-4/5 sm:w-3/5 md:w-1/2 lg:w-2/5 rounded-lg py-3 shadow-sm shadow-green-500 mx-auto overflow-y-scroll">
                 {
                     userlist.map((e)=><LikeBox image={e.profileImg} name={e.userName} accountId={e._id} userId={userId} key={e._id} />)
                 }
             </div>;
         }else{
             return <div 
-            className="backgroundClr h-[calc(100vh-140px)] w-4/5 sm:w-3/5 md:w-1/2 lg:w-2/5 rounded-lg py-3 shadow-sm shadow-green-500 mx-auto flex justify-center items-start">
+            className="backgroundClr h-[calc(100vh-140px)] w-4/5 sm:w-3/5 md:w-1/2 lg:w-2/5 rounded-lg py-3 shadow-sm shadow-green-500 mx-auto flex justify-center items-start overflow-y-scroll">
                 <div>
                     <i className="fa-solid fa-xmark fa-xl mr-2"></i>
                     <span className="text-base">User not found</span>

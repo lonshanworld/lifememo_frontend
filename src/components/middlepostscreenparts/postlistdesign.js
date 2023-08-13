@@ -30,7 +30,7 @@ function PostListdesign(props){
                 return url;
             }
         }else{
-            return null
+            return null;
         }
     }
 
@@ -43,7 +43,7 @@ function PostListdesign(props){
             const data = await response.json();
 
             const postdata = data.message.postdetail;
-
+            // console.log(postdata);
             let likearray = postdata["likes"];
             likearray.forEach((singlelike) =>{
                 if(singlelike === props.originaluserInfo._id){
@@ -147,7 +147,7 @@ function PostListdesign(props){
                             className={`block backgroundClr w-auto h-auto mx-6 my-6 p-5 ${!checktheme && "shadow-sm shadow-gray-500"} rounded-md`}>
                                 <div className="flex justify-between items-center ">
                                     <div className="flex justify-start items-center">
-                                        <img className="w-10 h-10 mr-5 rounded-full border border-cuswood" src={Logo} alt="profileimage" />
+                                        <img className="w-10 h-10 mr-5 rounded-full border border-cuswood" src={postInfo.userImageUrl === null ? Logo : postInfo.userImageUrl} alt="profileimage" />
                                         <div className="flex justify-start items-start flex-col">
                                             {/* <span className="text-sm">{postInfo.userName}</span> */}
                                             <NametoprofileBtn name={postInfo.userName} accountId={postInfo.userId} userId={props.originaluserInfo._id}/>
