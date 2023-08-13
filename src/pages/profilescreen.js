@@ -54,6 +54,7 @@ function ProfileScreen(){
     const [btntxt, setBtntxt] = useState();
     const [userInfo, setUserInfo] = useState();
     const [originaluserInfo, setOriginaluserInfo] = useState();
+    const [profileImg, setProfileImage ] = useState(null);
     // const [stillnotfriend, setStillnotfriend] = useState(false);
     const [isblocked, setIsblocked] = useState(false);
     const [isfriend, setIsfriend] = useState(false);
@@ -71,6 +72,7 @@ function ProfileScreen(){
             
             setUserInfo(rawdata["message"]["userData"]);
             setOriginaluserInfo(originalrawdata["message"]["userData"]);
+            setProfileImage(rawdata.profileImgUrl);
 
             if(originalrawdata["message"]["userData"]["friends"].includes(accountId)){
                 setIsfriend(true);
@@ -188,7 +190,7 @@ function ProfileScreen(){
                                 </span>
                                 <img
                                 className="rounded-full bg-cuswoodlight w-20 h-20 z-10 absolute shadow-sm shadow-gray-500 customImagespin" 
-                                src={Logo} />
+                                src={profileImg === null ? Logo : profileImg} />
                             </div>
                         </div>
                         {

@@ -17,11 +17,11 @@ function Appbar(props){
     return (
         <div className={`absolute z-10 appbarshadow h-12 w-full bg-cuswood flex justify-evenly items-center flex-row rounded-b-lg`}>
           
-            <div className="flex justify-center items-center flex-row">
+            <div className="h-full flex justify-center items-center flex-row">
                 {props.imgurl ? (
-                    <img className="h-10 px-3 py-1 backgroundClr" src={props.imgurl} alt="logo"/>    
+                    <img className="h-10 backgroundClr" src={props.imgurl} alt="logo"/>    
                 ) : (
-                    <img className="h-10 px-3 py-1 backgroundClr" src={Logo} alt="logo"/>
+                    <img className="h-10 backgroundClr" src={Logo} alt="logo"/>
                 )}
                 <span
                 className="active:bg-gray-400 active:bg-opacity-60"
