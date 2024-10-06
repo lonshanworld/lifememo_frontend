@@ -93,6 +93,8 @@ function Leftmenu(props){
                     </div>
                 </div>
                 <LeftBtns text="Log out" classListName="fa-solid fa-right-from-bracket text-xl" func={logoutFunc} />
+                <LeftBtns text="Purchase Packages" func={()=>navigate("/package")} />
+
             </div>
         </div>
     );

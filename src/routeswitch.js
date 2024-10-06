@@ -11,6 +11,9 @@ import ProfileScreen from "./pages/profilescreen";
 import CreatePostScreen from "./pages/createpostscreen";
 import SearchScreen from "./pages/searchscreen";
 import UpdateProfileScreen from "./pages/updateprofilescreen";
+import PackageScreen from "./pages/admin/package";
+import AdminLogin from "./pages/admin/login";
+import AdminSignUp from "./pages/admin/signup";
 
 // function RouteSwitch(){
 
@@ -41,6 +44,21 @@ const router = createBrowserRouter([
     {
         path:"signup",
         element: <Signup/>,
+        caseSensitive:true,
+    },
+    {
+        path:"admin/login",
+        element: <AdminLogin/>,
+        caseSensitive:true,
+    },
+    {
+        path:"admin/signup",
+        element: <AdminSignUp/>,
+        caseSensitive:true,
+    },
+    {
+        path:"package",
+        element: <PackageScreen/>,
         caseSensitive:true,
     },
     {

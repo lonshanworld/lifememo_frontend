@@ -14,6 +14,7 @@ import ShowCallingbtn from "../components/btns/showcallingbtn";
 import { UpdateShowAlertContext } from "../customhooks/showalertbox";
 import CalltxtBox from "../components/btns/calltxtbox";
 import VoiceCall from "../components/rightchats/voicecall";
+import { useNavigate } from "react-router-dom";
 
 
 function ChatScreen(props){
@@ -44,6 +45,8 @@ function ChatScreen(props){
     const [showAcceptVoice, setShowAcceptVoice] = useState(false);
 
     const [isVideo, setIsVideo] = useState(false);
+    const [userData, setUserData] = useState();
+    const navigate = useNavigate();
     
     const socket = io(`https://lifememo-api.onrender.com`,{
         path : "/chatsocket"
@@ -115,7 +118,12 @@ function ChatScreen(props){
         }
     }
     
-    
+    async function getCurrentUserData(){
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtforlifememory);
+        const data = await response.json();
+        console.log("data must here", data);
+        setUserData(data.message.userdata);
+    }
 
     async function getchatsocketid(){
         const response = await getApiRequest(
@@ -153,6 +161,7 @@ function ChatScreen(props){
         toggleShowloading(true);
         await getfriendData();
         await getcurrentuserprofile();
+        await getCurrentUserData();
         await getchatsocketid();
         toggleShowloading(false);
     }
@@ -289,12 +298,16 @@ function ChatScreen(props){
     }
 
     function callother(){
-        if(othersocketId !== null){
-            setShowcalling(true);
-            setIsVideo(true);
-            socket.emit("callother", othersocketId);
+        if(userData.videoCallPurchaseId !== undefined && userData.videoCallPurchaseId !== null){
+            if(othersocketId !== null){
+                setShowcalling(true);
+                setIsVideo(true);
+                socket.emit("callother", othersocketId);
+            }else{
+                toggleAlertBox(true, `${frienddata["userName"]} is not online`);
+            }
         }else{
-            toggleAlertBox(true, `${frienddata["userName"]} is not online`);
+            navigate("/package");
         }
     }
 
@@ -324,6 +337,8 @@ function ChatScreen(props){
 
 
     function callvoice(){
+        console.log("this is user", userData);
+       if(userData.voiceCallPurchaseId !== undefined && userData.voiceCallPurchaseId !== null){
         if(otherpeerId !== null){
             setShowVoiceCalling(true);
             setIsVideo(false);
@@ -331,6 +346,9 @@ function ChatScreen(props){
         }else{
             toggleAlertBox(true, `${frienddata["userName"]} is not online`);
         }
+       }else{
+            navigate("/package");
+       }
     }
 
     function acceptvoice(){

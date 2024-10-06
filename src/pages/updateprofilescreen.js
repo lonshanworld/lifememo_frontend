@@ -8,7 +8,6 @@ import { ShowLoadingContext } from "../customhooks/showloadingscreen";
 import { getApiRequest, postApiRequest } from "../utils/apiRequests";
 import DatePicker, { setDefaultLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import convertTime from "../utils/convertTimeformat";
 
 function UpdateProfileScreen(){
     const {userId} = useParams();
