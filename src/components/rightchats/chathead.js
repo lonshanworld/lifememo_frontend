@@ -8,16 +8,16 @@ import { ShowChatScreenContext } from "../../pages/mainscreen";
 function ChatHead(props){
     const [userData, setUserdata] = useState(Object);
     const [imageurl , setImageurl] = useState();
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const {showchatscreenFunc} = useContext(ShowChatScreenContext);
 
     async function getUserdata(value){
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user?userId=${value}`, cookies.jwtforlifememory);
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user?userId=${value}`, cookies.jwtfornotememo);
         const data = await response.json();
         setUserdata(data.message.userData);
         // console.log(data.message.userData.profileImg);
         if(data.message.userData.profileImg !== null){
-            const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}image?imageId=${data.message.userData.profileImg}`, cookies.jwtforlifememory);
+            const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}image?imageId=${data.message.userData.profileImg}`, cookies.jwtfornotememo);
             const responsetext = await response.json();
             // console.log(responsetext);
             const url = getImageUrl(responsetext.message.imageDetailInfo.image.data);

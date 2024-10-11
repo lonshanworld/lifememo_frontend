@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 function CreatePostScreen(){
     const imageRef = useRef();
     const [showimage, setShowimage] = useState(false);
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const {toggleShowError} = useContext(UpdateShowErrorContext);
     const {toggleShowloading} = useContext(ShowLoadingContext);
     const textRef = useRef();
@@ -46,9 +46,10 @@ function CreatePostScreen(){
 
         const response = await postApiRequest(
             `${process.env.REACT_APP_BASE_API}post/sendpost`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
             formdata,
         );
+        console.log("post response", response);
         toggleShowloading(false);
         if(response.status === 200){
             // console.log(response.status);

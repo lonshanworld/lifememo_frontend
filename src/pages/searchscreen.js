@@ -8,7 +8,7 @@ import LikeBox from "../components/btns/tinybox/likebox";
 function SearchScreen(){
     const {userId} = useParams();
     const [userlist, setUserlist] = useState(null);
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const {toggleShowError} = useContext(UpdateShowErrorContext);
     const inputRef = useRef();
 
@@ -18,7 +18,7 @@ function SearchScreen(){
         if(inputRef.current.value !== ""){
             const response = await getApiRequest(
                 `${process.env.REACT_APP_BASE_API}user/findpeople?nametext=${inputRef.current.value.toLowerCase()}`,
-                cookies.jwtforlifememory,
+                cookies.jwtfornotememo,
             );
             if(response.status === 200){
                 const rawdata =await response.json();

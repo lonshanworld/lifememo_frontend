@@ -6,7 +6,7 @@ import { getApiRequest } from "./utils/apiRequests";
 
 
 function App() {
-  const [cookies] = useCookies(["jwtforlifememory"]);
+  const [cookies] = useCookies(["jwtfornotememo"]);
   const navigate = useNavigate();
 
   function getcurrentyear(){
@@ -23,13 +23,13 @@ function App() {
   useEffect(()=>{
     getcurrentyear();
     let countdownId;
-    if(cookies.jwtforlifememory === undefined){
+    if(cookies.jwtfornotememo === undefined){
       countdownId = setTimeout(()=>{
         navigate("/login");
       },4000);
     }else{
       countdownId = setTimeout(async()=>{
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtforlifememory);
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtfornotememo);
         if(response.status === 200){
           const responsetext = await response.json();
           // console.log("userData ---",responsetext.message.userdata.role);

@@ -12,7 +12,7 @@ import Loadingbox from "../components/loadingbox";
 import { useCookies } from "react-cookie";
 
 function Login(){
-    const [cookies,setCookie] = useCookies(["jwtforlifememory"]);
+    const [cookies,setCookie] = useCookies(["jwtfornotememo"]);
     const emailinputRef = useRef();
     const passwordinputRef = useRef();
     const navigate = useNavigate();
@@ -40,7 +40,7 @@ function Login(){
             if(response.status === 200){
                 const data = await response.json();
                 // console.log(data["token"])
-                setCookie('jwtforlifememory', data["token"]);
+                setCookie('jwtfornotememo', data["token"]);
                 navigate("/main");
             }else{
                 // console.log(response.statusText);

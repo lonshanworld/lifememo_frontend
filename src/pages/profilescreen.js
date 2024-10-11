@@ -46,7 +46,7 @@ function ProfileScreen(){
     const {userId} = useParams();
     const {accountId} = useParams();
 
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const {toggleShowError} = useContext(UpdateShowErrorContext);
     const {toggleShowloading} = useContext(ShowLoadingContext);
 
@@ -62,8 +62,8 @@ function ProfileScreen(){
     
     async function fetchUsersData(){
         toggleShowloading(true);
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user?userId=${accountId}`,cookies.jwtforlifememory);
-        const originaluserresponse = await getApiRequest(`${process.env.REACT_APP_BASE_API}user?userId=${userId}`,cookies.jwtforlifememory)
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user?userId=${accountId}`,cookies.jwtfornotememo);
+        const originaluserresponse = await getApiRequest(`${process.env.REACT_APP_BASE_API}user?userId=${userId}`,cookies.jwtfornotememo)
         if(response.status === 200 && originaluserresponse.status === 200){
             const rawdata = await response.json();
             const originalrawdata = await originaluserresponse.json();
@@ -98,7 +98,7 @@ function ProfileScreen(){
         toggleShowloading(true);
         const response = await postApiRequest(
             `${process.env.REACT_APP_BASE_API}user/addfriend?friendId=${accountId}`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
             null,
             );
             toggleShowloading(false);    
@@ -114,7 +114,7 @@ function ProfileScreen(){
         toggleShowloading(true);
         const response = await postApiRequest(
             `${process.env.REACT_APP_BASE_API}user/removefriend?friendId=${accountId}`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
             null,
             );
             toggleShowloading(false);    
@@ -134,7 +134,7 @@ function ProfileScreen(){
         formdata.append("txt", memoRef.current.value);
         const response = await postApiRequest(
             `${process.env.REACT_APP_BASE_API}post/sendpost`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
             formdata,
         );
         toggleShowloading(false);

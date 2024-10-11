@@ -13,7 +13,7 @@ import DeletePostBtn from "../btns/deletepostBtn";
 
 function PostListdesign(props){
     const checktheme = useTheme();
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const [likestate, setLikeState] = useState(false);
     const [sharestate, setShareState] = useState(false);
     const [postInfo, setPostInfo] = useState(Object);
@@ -35,7 +35,7 @@ function PostListdesign(props){
     }
 
     async function getpostDetail(){
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}post/getpost?postId=${props.postId}`,cookies.jwtforlifememory);
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}post/getpost?postId=${props.postId}`,cookies.jwtfornotememo);
         if(response.status !== 200){
             
             setShowpost(true);
@@ -70,7 +70,7 @@ function PostListdesign(props){
         if(likestate === false){
             const response = await postApiRequest(
                 `${process.env.REACT_APP_BASE_API}post/givelikes?postId=${postInfo.postId}`,
-                cookies.jwtforlifememory,
+                cookies.jwtfornotememo,
                 null,
                 );
             if(response.status === 200){
@@ -82,7 +82,7 @@ function PostListdesign(props){
         }else{
             const response = await postApiRequest(
                 `${process.env.REACT_APP_BASE_API}post/deletelike?postId=${postInfo.postId}`,
-                cookies.jwtforlifememory,
+                cookies.jwtfornotememo,
                 null,
             );
             if(response.status === 200){
@@ -104,7 +104,7 @@ function PostListdesign(props){
         if(sharestate === false){
             const response = await postApiRequest(
                 `${process.env.REACT_APP_BASE_API}post/share?postId=${postInfo.postId}`,
-                cookies.jwtforlifememory,
+                cookies.jwtfornotememo,
                 null,
             );
             if(response.status === 200){
@@ -116,7 +116,7 @@ function PostListdesign(props){
         }else{
             const response = await postApiRequest(
                 `${process.env.REACT_APP_BASE_API}post/removeshare?postId=${postInfo.postId}`,
-                cookies.jwtforlifememory,
+                cookies.jwtfornotememo,
                 null,
             );
             if(response.status === 200){

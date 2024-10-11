@@ -7,13 +7,13 @@ import { getApiRequest } from "../utils/apiRequests";
 
 function Middlepostscreen(props){
     const [postIdlist, setPostIdlist] = useState([]);
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const [loading, setLoading] = useState(false);
     const {toggleShowError} = useContext(UpdateShowErrorContext);
 
     async function getpostdata(amountvalue){
         setLoading(true);
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}post?startnum=${postIdlist.length}&amount=${amountvalue}`, cookies.jwtforlifememory);
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}post?startnum=${postIdlist.length}&amount=${amountvalue}`, cookies.jwtfornotememo);
         if(response.status === 200){
             const data = await response.json();
             let allpostList = [];

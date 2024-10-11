@@ -8,7 +8,7 @@ import Errorbox from "../../components/errorbox";
 import { useNavigate } from "react-router-dom";
 
 export default function PackageScreen(){
-    const [cookies,setCookie, removeCookie] = useCookies(["jwtforlifememory"]);
+    const [cookies,setCookie, removeCookie] = useCookies(["jwtfornotememo"]);
     const [userData, setUserData] = useState();
     const [packageList, setPackageList] = useState([]);
     const [requestList, setRequestList] = useState([]);
@@ -38,7 +38,7 @@ export default function PackageScreen(){
             setShowLoading(true);
             const result = await postApiRequest(
                 `${process.env.REACT_APP_BASE_API}purchase/purchasePackage`,
-                cookies.jwtforlifememory,
+                cookies.jwtfornotememo,
                 JSON.stringify({
                     packageId : selectedPackage._id
                 }),
@@ -64,12 +64,12 @@ export default function PackageScreen(){
         // console.log("testing 123")
         // toggleShowError("passing value error");
         setShowLoading(true);
-        const respose = await getApiRequest(`${process.env.REACT_APP_BASE_API}logout`,cookies.jwtforlifememory);
+        const respose = await getApiRequest(`${process.env.REACT_APP_BASE_API}logout`,cookies.jwtfornotememo);
         if(respose.status === 200){
 
             setTimeout(()=>{
                 setShowLoading(false);
-                removeCookie("jwtforlifememory");
+                removeCookie("jwtfornotememo");
                 navigate("/");
             },2000);
         }
@@ -79,9 +79,9 @@ export default function PackageScreen(){
         setShowLoading(true);
         const [dataOne, dataTwo, dataThree] = await Promise.all(
             [
-                getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtforlifememory),
-                getApiRequest(`${process.env.REACT_APP_BASE_API}package/getPackages`,cookies.jwtforlifememory),
-                getApiRequest(`${process.env.REACT_APP_BASE_API}purchase/getPurchaseRequest`,cookies.jwtforlifememory),
+                getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtfornotememo),
+                getApiRequest(`${process.env.REACT_APP_BASE_API}package/getPackages`,cookies.jwtfornotememo),
+                getApiRequest(`${process.env.REACT_APP_BASE_API}purchase/getPurchaseRequest`,cookies.jwtfornotememo),
             ]
         );
        
@@ -109,7 +109,7 @@ export default function PackageScreen(){
 
             const result = await deleteApiRequest(
                 `${process.env.REACT_APP_BASE_API}package/deletePackage`,
-                cookies.jwtforlifememory,
+                cookies.jwtfornotememo,
                 JSON.stringify({
                     packageId : selectedPackage._id
                 }),

@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function ChatScreen(props){
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const [frienddata, setFrienddata] = useState(Object);
     const [imgurl, setImgurl] = useState("");
     const {toggleShowloading} = useContext(ShowLoadingContext);
@@ -90,7 +90,7 @@ function ChatScreen(props){
 
     async function getImagedata(imgId){
         if(imgId !== null){
-            const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}image?imageId=${imgId}`, cookies.jwtforlifememory);
+            const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}image?imageId=${imgId}`, cookies.jwtfornotememo);
             const responsetext = await response.json();
 
             const url = getImageUrl(responsetext.message.imageDetailInfo.image.data);
@@ -101,7 +101,7 @@ function ChatScreen(props){
     async function getfriendData(){
         const response = await getApiRequest(
             `${process.env.REACT_APP_BASE_API}user?userId=${props.id}`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
         );
         const data = await response.json();
         setFrienddata(data["message"]["userData"]);
@@ -110,7 +110,7 @@ function ChatScreen(props){
 
     async function getcurrentuserprofile(){
         if(props.originaluserInfo.profileImg !== null){
-            const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}image?imageId=${props.originaluserInfo.profileImg}`, cookies.jwtforlifememory);
+            const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}image?imageId=${props.originaluserInfo.profileImg}`, cookies.jwtfornotememo);
             const responsetext = await response.json();
 
             const url = getImageUrl(responsetext.message.imageDetailInfo.image.data);
@@ -119,7 +119,7 @@ function ChatScreen(props){
     }
     
     async function getCurrentUserData(){
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtforlifememory);
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtfornotememo);
         const data = await response.json();
         console.log("data must here", data);
         setUserData(data.message.userdata);
@@ -128,7 +128,7 @@ function ChatScreen(props){
     async function getchatsocketid(){
         const response = await getApiRequest(
             `${process.env.REACT_APP_BASE_API}chat?friendId=${props.id}`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
         );
         const data = await response.json();
         const chatId = data["chatId"];
@@ -137,7 +137,7 @@ function ChatScreen(props){
         setChatroomId(chatId);
         const responsechatlist = await getApiRequest(
             `${process.env.REACT_APP_BASE_API}chat/getmessages?chatId=${chatId}&startnum=0&amount=20`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
         );
         const datalist = await responsechatlist.json();
         const reversedatalist = datalist.reverse();

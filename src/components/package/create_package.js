@@ -7,11 +7,12 @@ export default function CreatePackage({
     afterSubmitFunc,
     hide,
 }){
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const packageName = useRef();
     const packageType = useRef();
     const content = useRef();
     const limit = useRef();
+    const price = useRef();
     const [isUnlimited, setIsUnlimited] = useState(false);
     const [showLoading, setShowLoading] = useState(false);
 
@@ -19,24 +20,26 @@ export default function CreatePackage({
     const handleSubmit = async(e) => {
         e.preventDefault();
         setShowLoading(true);
-        const newPackage ={
-            packageName: packageName.current.value,
-            packageType: packageType.current.value,
-            content: content.current.value,
-            limit: limit.current.value,
-            isUnlimited : isUnlimited,
-            createdBy: userId,
-        };
+        // const newPackage ={
+        //     packageName: packageName.current.value,
+        //     packageType: packageType.current.value,
+        //     content: content.current.value,
+        //     limit: limit.current.value,
+        //     price : price.current.value,
+        //     isUnlimited : isUnlimited,
+        //     createdBy: userId,
+        // };
 
         // console.log("Submitted Package:", newPackage);
         const response = await postApiRequest(
             `${process.env.REACT_APP_BASE_API}package/createPackage`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
             JSON.stringify({
                 packageName: packageName.current.value,
                 packageType: packageType.current.value,
                 content: content.current.value,
                 limit: limit.current.value,
+                price : price.current.value,
                 isUnlimited : isUnlimited,
                 createdBy: userId,
             }),
@@ -54,6 +57,7 @@ export default function CreatePackage({
         packageType.current.value = 'post'; // Reset to default
         content.current.value = '';
         limit.current.value = '';
+        price.current.value = "";
         setIsUnlimited(false); // Reset checkbox
         setShowLoading(false);
         hide();
@@ -112,6 +116,17 @@ export default function CreatePackage({
                     className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 />
             </div>
+
+            <div>
+                <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
+                <input
+                    type="number"
+                    ref={price}
+                    id="price"
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                />
+            </div>
+
 
             <div className="flex items-center">
                 <input

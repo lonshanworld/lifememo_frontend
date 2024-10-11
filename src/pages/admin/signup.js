@@ -21,7 +21,7 @@ export default function AdminSignUp(){
     const [showerror, setShowerror] = useState(false);
     const [errortext, setErrorText] = useState("");
     const [showloading, setShowloading] = useState(false);
-    const [cookies,setCookie] = useCookies(["jwtforlifememory"]);
+    const [cookies,setCookie] = useCookies(["jwtfornotememo"]);
 
     // let today = new Date();
     // let dd = today.getDate();
@@ -59,7 +59,7 @@ export default function AdminSignUp(){
                 if(response.status === 200){
                     const data = await response.json();
                     // console.log(data["token"])
-                    setCookie('jwtforlifememory', data["token"]);
+                    setCookie('jwtfornotememo', data["token"]);
                     navigate("/package");
                 }else{
                     setErrorText(response.statusText);

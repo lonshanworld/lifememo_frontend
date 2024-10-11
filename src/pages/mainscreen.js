@@ -16,7 +16,7 @@ const ShowChatScreenContext = React.createContext();
 
 
 function MainScreen(){
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     // const controller = new AbortController();
     // const signal = controller.signal;
     const [dataobject, setDataobject] = useState();
@@ -30,7 +30,7 @@ function MainScreen(){
     const [chatid, setChatid] = useState("");
 
     async function getuserData(){
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtforlifememory);
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtfornotememo);
         if(response.status === 200){
             const responsetext = await response.json();
             setDataobject(responsetext.message.userdata);
@@ -50,7 +50,7 @@ function MainScreen(){
 
    
     async function getImagedata(imgId){
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}image?imageId=${imgId}`, cookies.jwtforlifememory);
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}image?imageId=${imgId}`, cookies.jwtfornotememo);
 
         if(response.status === 200){
             const responsetext = await response.json();

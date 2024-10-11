@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function UpdateProfileScreen(){
     const {userId} = useParams();
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
 
     const usernameRef = useRef();
     const emailRef = useRef();
@@ -40,7 +40,7 @@ function UpdateProfileScreen(){
 
     async function getPersonalData(){
         toggleShowloading(true);
-        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtforlifememory);
+        const response = await getApiRequest(`${process.env.REACT_APP_BASE_API}user/profile`,cookies.jwtfornotememo);
         toggleShowloading(false);
         if(response.status === 200){
             const data = await response.json();
@@ -102,7 +102,7 @@ function UpdateProfileScreen(){
         toggleShowloading(true);
         const response = await postApiRequest(
             `${process.env.REACT_APP_BASE_API}user/updateprofile`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
             formdata,
         );
         toggleShowloading(false);

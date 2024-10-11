@@ -9,13 +9,13 @@ function DeletePostBtn(props){
     const checktheme = useTheme();
     const {toggleShowloading} = useContext(ShowLoadingContext);
     const {toggleShowError} = useContext(UpdateShowErrorContext);
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
 
     async function deletepostFunc(){
         toggleShowloading(true);
         const response = await postApiRequest(
             `${process.env.REACT_APP_BASE_API}post/deletepost?postId=${props.postId}`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
             null,
         );
         toggleShowloading(false);

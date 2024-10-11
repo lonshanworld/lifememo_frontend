@@ -17,7 +17,6 @@ async function postApiRequest(apistring, cookiedata, body){
             // credentials: "include",
             headers: {
                 Authorization : `Bearer ${cookiedata}`,
-                'Content-Type': 'application/json'
             },
             body : body
         },

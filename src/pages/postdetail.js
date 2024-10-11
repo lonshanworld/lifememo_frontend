@@ -53,7 +53,7 @@ const boxarray=[
 
 function Postdetail(){
     const checktheme = useTheme();
-    const [cookies] = useCookies(["jwtforlifememory"]);
+    const [cookies] = useCookies(["jwtfornotememo"]);
     const {postId} = useParams();
     const {userId} = useParams();
     const {accountId} = useParams();
@@ -75,7 +75,7 @@ function Postdetail(){
         console.log(postId);
         const response = await getApiRequest(
             `${process.env.REACT_APP_BASE_API}post/postdetail?postId=${postId}`,
-            cookies.jwtforlifememory,
+            cookies.jwtfornotememo,
         );
         if(response.status === 200){
             const data = await response.json();
@@ -139,7 +139,7 @@ function Postdetail(){
             formdata.append("text", txtref.current.value);
             const sendmessage = await postApiRequest(
                 `${process.env.REACT_APP_BASE_API}post/givecomment?postId=${postId}`,
-                cookies.jwtforlifememory,
+                cookies.jwtfornotememo,
                 formdata,
             );
             if(sendmessage.status === 200){

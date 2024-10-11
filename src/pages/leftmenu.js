@@ -13,7 +13,7 @@ function Leftmenu(props){
     const [classvalue, setClasevalue] = useState("fixed w-60 h-5/6 mt-14 -translate-x-64 z-20");
     const [themedropdown, setThemedropdown] = useState(false);
     const toggletheme = useThemeUpdate();
-    const [cookies, setCookie, removeCookie] = useCookies(["jwtforlifememory"]);
+    const [cookies, setCookie, removeCookie] = useCookies(["jwtfornotememo"]);
     const {toggleShowError} = useContext(UpdateShowErrorContext);
     const {toggleShowloading} = useContext(ShowLoadingContext);
     const navigate = useNavigate();
@@ -29,12 +29,12 @@ function Leftmenu(props){
     async function logoutFunc(){
         // toggleShowError("passing value error");
         toggleShowloading(true);
-        const respose = await getApiRequest(`${process.env.REACT_APP_BASE_API}logout`,cookies.jwtforlifememory);
+        const respose = await getApiRequest(`${process.env.REACT_APP_BASE_API}logout`,cookies.jwtfornotememo);
         if(respose.status === 200){
 
             setTimeout(()=>{
                 toggleShowloading(false);
-                removeCookie("jwtforlifememory");
+                removeCookie("jwtfornotememo");
                 navigate("/");
             },2000);
         }else{
