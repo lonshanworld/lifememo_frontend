@@ -1,6 +1,6 @@
 import { useCookies } from "react-cookie";
 import {useRef, useState} from "react";
-import { postApiRequest } from "../../utils/apiRequests";
+import { postApiRequest, postApiRequestForPackage } from "../../utils/apiRequests";
 
 export default function CreatePackage({
     userId,
@@ -31,7 +31,7 @@ export default function CreatePackage({
         // };
 
         // console.log("Submitted Package:", newPackage);
-        const response = await postApiRequest(
+        const response = await postApiRequestForPackage(
             `${process.env.REACT_APP_BASE_API}package/createPackage`,
             cookies.jwtfornotememo,
             JSON.stringify({

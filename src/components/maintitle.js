@@ -8,7 +8,7 @@ function Maintitle(){
                 <span className="px-5 py-2 rounded-lg">Note Memo</span>
             </div>
             <br/>
-            <span className="infoapp block pt-3">Store your memories in this application</span>
+            <span className="infoapp block pt-3">Store your notes and memories in this application</span>
             <img className="absolute w-8 h-8 rotate-12 top-0 left-10" src={butterfly} alt="butterfly"/>
         </div>
     );

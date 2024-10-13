@@ -23,6 +23,20 @@ async function postApiRequest(apistring, cookiedata, body){
     )
 };
 
+async function postApiRequestForPackage(apistring, cookiedata, body){
+    return await fetch(
+        apistring,{
+            method: "POST",
+            // credentials: "include",
+            headers: {
+                Authorization : `Bearer ${cookiedata}`,
+                "Content-Type" : "application/json"
+            },
+            body : body
+        },
+    )
+};
+
 async function deleteApiRequest(apistring, cookiedata, body){
     return await fetch(
         apistring,{
@@ -55,5 +69,6 @@ export {
     getApiRequest,
     postApiRequest,
     deleteApiRequest,
-    putApiRequest
+    putApiRequest,
+    postApiRequestForPackage,
 };

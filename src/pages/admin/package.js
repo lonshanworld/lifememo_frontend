@@ -236,6 +236,8 @@ export default function PackageScreen(){
                                             <span
                                             className="bg-cuswoodlight text-black capitalize text-base px-3 py-1 rounded-md">{item.packageType}</span>
                                             <p
+                                            className="text-cuswood text-lg font-bold text-center">Price - $ {item.price}</p>
+                                            <p
                                             className="text-cusgreen text-base">{item.content}</p>
                                             <div>
                                                 <span>Limit : </span>

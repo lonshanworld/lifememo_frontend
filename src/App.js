@@ -65,7 +65,7 @@ function App() {
         >Click to go to admin login within 4 seconds</button>
       </div>
       <p
-      className="absolute bottom-5">Copyright &copy; <span id="year"></span>.  All rights reserved to Lon Shan.</p>
+      className="absolute bottom-5">Copyright &copy; <span id="year"></span>.  All rights reserved to Note-Memo.</p>
     </div>
   );
 }
